@@ -23,7 +23,7 @@ const [cart,setCart]=useState([])
     localStorage.setItem("cart",JSON.stringify(cart))
     return (  
       <section>
-        <h1>Fake Shop API response:</h1>
+        <h1>All Products</h1>
         {loading && "Loading..."}
         {!!data && data.length > 0 ? data.map((product) => {
             return(

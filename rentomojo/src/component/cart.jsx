@@ -1,10 +1,10 @@
 export default function Cart(){
-const cart=JSON.parse(localStorage.getItem("cart"))||[];
+const cart=JSON.parse(localStorage.getItem("cart"));
 console.log(cart,"cart")
     return (
         <div>
 {
-  cart.length>0 && cart.map(product=>{
+  cart?.cart?.map(product=>{
         <article key={product.id}>
         <img src={product.image} alt="" width="200" height="200"/>
         <h2>name: {product.name}</h2>
