@@ -41,16 +41,18 @@
   display: flex;
 
   
-  border: 1px solid ;
+ 
+  
   margin:auto;
 }
 .nav>input{
   width:400px ;
   height:40px;
   margin: auto;
+  border-radius: 20px;
 }
 .nav>button{
-  width:50px;
+  width:70px;
   height:30px;
   margin: auto ;
 
