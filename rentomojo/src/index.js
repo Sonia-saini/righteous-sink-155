@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import Cartapi from './component/cartcontext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Cartapi>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </Cartapi>
 );
 
 // If you want to start measuring performance in your app, pass a function

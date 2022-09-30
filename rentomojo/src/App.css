@@ -58,3 +58,28 @@
 
   
 }
+.product{
+  width:80%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:30px;
+  margin: auto;
+}
+.product>div{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width:250px;
+  padding: 10px;
+}
+.cart{
+  width:90%;
+  display: grid;
+  margin: auto;
+  grid-template-columns: repeat(3,1fr);
+  gap:30px;
+
+}
+.cart>div{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width:350px;
+  padding: 10px;
+}

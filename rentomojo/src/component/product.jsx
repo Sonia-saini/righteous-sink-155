@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import axios from 'axios'
+
+import {cartContext} from './cartcontext'
+import { addtoCart } from './action'
 
 export default function Product(){
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
-const [cart,setCart]=useState([])
+
+    const {state,dispatch}=React.useContext(cartContext)
+    const alreadyadded=(id,state)=>{
+   
+      if(state.find((el)=>el.id===id)){
+        return true;
+      }
+      return false;
+    }
     useEffect(() => {
         setLoading(true)
         axios({
@@ -20,22 +31,27 @@ const [cart,setCart]=useState([])
             .finally(() => setLoading(false))
     }, [])
 
-    localStorage.setItem("cart",JSON.stringify(cart))
+    console.log(state,"asdfad")
+    
     return (  
-      <section>
-        <h1>All Products</h1>
+     
+      
+      <section className='product'>
+       
         {loading && "Loading..."}
         {!!data && data.length > 0 ? data.map((product) => {
             return(
               <div key={product.id}>
                 <img src={product.image} alt="" width="200" height="200"/>
-                <h2>name: {product.name}</h2>
-                <p>id: {product.id}</p>
-                <p>title: {product.title}</p>
-                <p>brand: {product.brand}</p>
-                <p>price: {product.price}</p>
-                <p>category: {product.category}</p>
-                <button onClick={()=>setCart([...cart,product])}>add to cart</button>
+                <h2>Name: {product.title}</h2>
+                <p>Id: {product.id}</p>
+              
+              
+                <p>Brand: {product.brand}</p>
+                <p>Price: {product.price}</p>
+                <p>Category: {product.category}</p>
+                <button disabled={alreadyadded(product.id,state)} onClick={()=>dispatch(addtoCart(product)) 
+                }>Add to Cart</button>
               </div>
             )   
           }):(<p>API did not provided any product, try again.</p>)
