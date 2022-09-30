@@ -1,11 +1,27 @@
+import { useState } from "react";
+import { useContext } from "react"
+import { cartContext } from "./cartcontext"
+import {remove,checkout} from "./action"
+
 export default function Cart(){
-const cart=JSON.parse(localStorage.getItem("cart"));
-console.log(cart,"cart")
+  const {state,dispatch}=useContext(cartContext);
+ 
+  
+
+ 
+ 
+ 
+
+ 
+  
+  
     return (
-        <div>
-{
-  cart?.cart?.map(product=>{
-        <article key={product.id}>
+        <>
+        <h1>Quantity:{state.length} </h1>
+        <h2>Total-Price : {Math.round(state.reduce((a,c)=>a+c.price,0))}</h2>
+<div className="cart">{
+  state.length>0?state.map(product=>{
+      return  <div key={product.id}>
         <img src={product.image} alt="" width="200" height="200"/>
         <h2>name: {product.name}</h2>
         <p>id: {product.id}</p>
@@ -13,10 +29,12 @@ console.log(cart,"cart")
         <p>brand: {product.brand}</p>
         <p>price: {product.price}</p>
         <p>category: {product.category}</p>
-        <button >remove</button>
-      </article>
-    })
-}
-        </div>
+        <button onClick={()=>dispatch(remove(product.id))}>Remove</button>
+      </div>
+    }):"no products"
+ 
+} </div> 
+<button onClick={()=>dispatch(checkout())}>Order confirm</button>
+        </>
     )
 }
